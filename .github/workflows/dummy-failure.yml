@@ -1,0 +1,25 @@
+name: Dummy Deployment Failure Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    name: Simulated Deployment
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Simulate Application Build
+        run: echo "Application build started..."
+
+      - name: Simulate Deployment Failure
+        run: |
+          echo "Starting deployment..."
+          echo "ERROR: Docker image not found"
+          echo "ERROR: Failed to pull image example/app:999"
+          exit 1
